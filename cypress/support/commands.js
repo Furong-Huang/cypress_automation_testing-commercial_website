@@ -32,7 +32,7 @@ Cypress.Commands.add('getIframeBody', () => {
     // and retry until the body element is not empty
     return cy
     .get('.fancybox-iframe')
-    .its('0.contentDocument.body',{timeout:8000}).should('not.be.empty')
+    .its('0.contentDocument.body',{timeout:10000}).should('not.be.empty')
     // wraps "body" DOM element to allow
     // chaining more Cypress commands, like ".find(...)"
     // https://on.cypress.io/wrap
@@ -40,11 +40,43 @@ Cypress.Commands.add('getIframeBody', () => {
   })
 
 
+
+
+
+
 Cypress.Commands.add("addToCart",(quantity,size,color)=>{
+
+    function colorMap(color){
+        var color1;
+        const colorList=[
+            ["Orange","color_13"],
+            ["Blue", "color_14"],
+            ["White", "color_8"],
+            ["Black","color_11"],
+            ["Beige","color_7"],
+            ["Pink","color_24"],
+            ["Yellow", "color_16"],
+            ["Green","color_15"]
+        ]
+
+
+        for(let i=0;i<colorList.length;i++)
+        {
+            if(colorList[i][0]==color)
+            {
+                color1=colorList[i][1];
+            }
+        }
+
+        return color1;
+    }
+
+
+    let temp= colorMap(color)
 
     cy.get('#quantity_wanted').clear().type(quantity)
     cy.get('#uniform-group_1').click().find('#group_1').select(size)
-    cy.get('#'+color).click()
+    cy.get('#'+temp).click()
     cy.get('#add_to_cart').click()
 })
 

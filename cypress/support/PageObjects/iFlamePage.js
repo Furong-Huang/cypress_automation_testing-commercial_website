@@ -1,6 +1,6 @@
 class IFlamePage {
 
-    addToCart(quantity,size,color){
+    colorMap(color){
 
         var color1;
         const colorList=[
@@ -14,7 +14,8 @@ class IFlamePage {
             ["Green","color_15"]
         ]
 
-        for(let i=0;i<colorList.length();i++)
+
+        for(let i=0;i<colorList.length;i++)
         {
             if(colorList[i][0]==color)
             {
@@ -22,11 +23,19 @@ class IFlamePage {
             }
         }
 
+        return color1;
+
+    }
+    
+
+    addToCart(quantity,size,color){
+
+        let temp = this.colorMap(color)
 
         cy.getIframeBody().find('#quantity_wanted', {timeout:10000}).clear().type(quantity)
         cy.wait(2000)
         cy.getIframeBody().find('#uniform-group_1', {timeout:10000}).click().find('#group_1', {timeout:9000}).select(size)
-        cy.getIframeBody().find('#'+color1, {timeout:10000}).click()
+        cy.getIframeBody().find('#'+temp, {timeout:10000}).click()
         cy.getIframeBody().find('#add_to_cart', {timeout:10000}).click()
 
     }
