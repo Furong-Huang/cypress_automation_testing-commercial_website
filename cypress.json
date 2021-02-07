@@ -1,0 +1,7 @@
+{
+    "baseUrl": "http://automationpractice.com/index.php",
+    "env":{
+          "email":"374373925@qq.com",
+          "password":"2017010555"
+    }
+}

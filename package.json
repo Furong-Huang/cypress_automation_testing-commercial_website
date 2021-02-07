@@ -1,0 +1,22 @@
+{
+  "name": "cypress_automation_testing-commercial_website",
+  "version": "1.0.0",
+  "description": "Test Suite 1: Search function",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Furong-Huang/cypress_automation_testing-commercial_website.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Furong-Huang/cypress_automation_testing-commercial_website/issues"
+  },
+  "homepage": "https://github.com/Furong-Huang/cypress_automation_testing-commercial_website#readme",
+  "dependencies": {
+    "cypress": "^6.4.0"
+  }
+}
