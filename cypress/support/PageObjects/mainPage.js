@@ -7,7 +7,7 @@ class MainPage{
      }
 
     getMoreBtns(number){
-       return cy.contains('More').eq(number)
+       return cy.contains('More').eq(number-1)
     }
 
 
@@ -20,19 +20,32 @@ class MainPage{
     }
 
     getAddToCartBtns(number){
-       return cy.contains('Add to cart').eq(number)
+       return cy.get('[title="Add to cart"]').eq(number-1)
     }
 
     searchContent(keyword) {
+        if(keyword === "")
+        {
+            cy.get('#search_query_top').clear()
+            cy.get('[name="submit_search"]').click()
+             cy.url().should('contain','search_query')
+        }
+        else{
+            cy.get('#search_query_top').clear().type(keyword)
+            cy.get('[name="submit_search"]').click()
+            cy.url().should('contain','search_query')
+        }
+    }
+
+    searchContentByEnter(keyword) {
         cy.get('#search_query_top').clear().type(keyword)
-        cy.get('[name="submit_search"]').click()
-        cy.url().should('contain','search_query',{timeout:8000})
+        cy.url().should('contain','search_query')
     }
 
     goToSignInPage()
     {
         cy.contains('Sign in').click()
-        cy.url().should('contain','controller=authentication&back=my-account',{timeout:8000}).then(()=>{
+        cy.url().should('contain','controller=authentication&back=my-account').then(()=>{
             console.log('We are in the SignInPage.')
         })
 

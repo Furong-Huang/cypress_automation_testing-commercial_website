@@ -1,44 +1,48 @@
 import MainPage from "../support/PageObjects/mainPage"
 import SignInPage from "../support/PageObjects/signInPage"
 import OrderHistoryPage from "../support/PageObjects/orderHistoryPage"
+import MyAccountPage from "../support/PageObjects/myAccountPage"
 
 describe('Order History and Details function in My Account Page',()=>{
     const mainPage = new MainPage();
     const signInPage = new SignInPage();
     const orderHistoryPage = new OrderHistoryPage();
+    const myAccountPage = new MyAccountPage();
 
-    beforeEach(()=>{
+    before(()=>{
         cy.visit("/")
         mainPage.goToSignInPage()
         signInPage.signIn()
-        signInPage.goToOrderHistroyPage()
+        myAccountPage.goToOrderHistroyPage()
     })
 
-    it('Sort order price by Desc ',()=>{
-        
+    it('Verify sorting order by price',()=>{
+       
+        orderHistoryPage.checkSortByPrice()
     })
 
-    it('Sort order price by Asc ',()=>{
-        
-    })
+    it('Verify showing order details function',()=>{
 
-    it('Sort order by Date',()=>{
-        
-    })
-
-    it('Check reorder function',()=>{
+        orderHistoryPage.showOrderDetails()
+        orderHistoryPage.checkOrderDetails()
 
     })
 
-    it('Show Payment and Invoice',()=>{
+    it('Verify sending a message function',()=>{
+
+        orderHistoryPage.showOrderDetails()
+        orderHistoryPage.checkSendMessage()
 
     })
 
-    it('Show order details',()=>{
+    it('Verify reorder function',()=>{
+
+        orderHistoryPage.showOrderDetails()
+        orderHistoryPage.checkReorder()
 
     })
 
-    it('Add a message and send',()=>{
-
+    it('Verify downloading invoice fucntion',()=>{
+        orderHistoryPage.checkDownloadInvoice()
     })
 })

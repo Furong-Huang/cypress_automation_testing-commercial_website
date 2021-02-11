@@ -1,29 +1,24 @@
 class IFlamePage {
 
     colorMap(color){
+      
+        const colorList = [
+          { name: "Orange", code: "color_13" },
+          { name: "Blue", code: "color_14" },
+          { name: "White", code: "color_8" },
+          { name: "Black", code: "color_11" },
+          { name: "Beige", code: "color_7" },
+          { name: "Pink", code: "color_24" },
+          { name: "Yellow", code: "color_16" },
+          { name: "Green", code: "color_15" },
+        ];
 
-        var color1;
-        const colorList=[
-            ["Orange","color_13"],
-            ["Blue", "color_14"],
-            ["White", "color_8"],
-            ["Black","color_11"],
-            ["Beige","color_7"],
-            ["Pink","color_24"],
-            ["Yellow", "color_16"],
-            ["Green","color_15"]
-        ]
-
-
-        for(let i=0;i<colorList.length;i++)
-        {
-            if(colorList[i][0]==color)
-            {
-                color1=colorList[i][1];
-            }
+        for (let i = 0; i < colorList.length; i++) {
+          if (colorList[i].name === color) {
+            return colorList[i].code;
+          }
         }
-
-        return color1;
+            
 
     }
     
@@ -32,11 +27,11 @@ class IFlamePage {
 
         let temp = this.colorMap(color)
 
-        cy.getIframeBody().find('#quantity_wanted', {timeout:10000}).clear().type(quantity)
+        cy.getIframeBody().find('#quantity_wanted').clear().type(quantity)
         cy.wait(2000)
-        cy.getIframeBody().find('#uniform-group_1', {timeout:10000}).click().find('#group_1', {timeout:9000}).select(size)
-        cy.getIframeBody().find('#'+temp, {timeout:10000}).click()
-        cy.getIframeBody().find('#add_to_cart', {timeout:10000}).click()
+        cy.getIframeBody().find('#uniform-group_1').click().find('#group_1').select(size)
+        cy.getIframeBody().find('#'+temp).click()
+        cy.getIframeBody().find('#add_to_cart').click()
 
     }
 

@@ -26,13 +26,14 @@
 
 // cypress/support/index.js
 
+require('cypress-downloadfile/lib/downloadFileCommand')
 
 Cypress.Commands.add('getIframeBody', () => {
     // get the iframe > document > body
     // and retry until the body element is not empty
     return cy
     .get('.fancybox-iframe')
-    .its('0.contentDocument.body',{timeout:10000}).should('not.be.empty')
+    .its('0.contentDocument.body').should('not.be.empty')
     // wraps "body" DOM element to allow
     // chaining more Cypress commands, like ".find(...)"
     // https://on.cypress.io/wrap
@@ -41,39 +42,38 @@ Cypress.Commands.add('getIframeBody', () => {
 
 
 
-
-
-
 Cypress.Commands.add("addToCart",(quantity,size,color)=>{
 
     function colorMap(color){
-        var color1;
-        const colorList=[
-            ["Orange","color_13"],
-            ["Blue", "color_14"],
-            ["White", "color_8"],
-            ["Black","color_11"],
-            ["Beige","color_7"],
-            ["Pink","color_24"],
-            ["Yellow", "color_16"],
-            ["Green","color_15"]
-        ]
+      
+        const colorList = [
+          { name: "Orange", code: "color_13" },
+          { name: "Blue", code: "color_14" },
+          { name: "White", code: "color_8" },
+          { name: "Black", code: "color_11" },
+          { name: "Beige", code: "color_7" },
+          { name: "Pink", code: "color_24" },
+          { name: "Yellow", code: "color_16" },
+          { name: "Green", code: "color_15" },
+        ];
 
-
-        for(let i=0;i<colorList.length;i++)
-        {
-            if(colorList[i][0]==color)
-            {
-                color1=colorList[i][1];
-            }
+        for (let i = 0; i < colorList.length; i++) {
+          if (colorList[i].name === color) {
+            return colorList[i].code;
+          }
         }
+            
 
-        return color1;
     }
-
 
     let temp= colorMap(color)
 
+    cy.get('#bigpic').invoke('attr','src').then((src)=>{
+      expect(src).to.be.exist
+    })
+    cy.get('.img-responsive').invoke('attr','src').then((src)=>{
+      expect(src).to.be.exist
+    })
     cy.get('#quantity_wanted').clear().type(quantity)
     cy.get('#uniform-group_1').click().find('#group_1').select(size)
     cy.get('#'+temp).click()
@@ -86,4 +86,26 @@ Cypress.Commands.add("verifyAddToCartSuccessfully",(name,quantity,size,color,pri
     cy.get('#layer_cart_product_quantity').invoke('text').should('eq',quantity)
     cy.get('#layer_cart_product_title').should('contain',name)
     cy.get('#layer_cart_product_price').invoke('text').should('eq','$'+(parseFloat(price)*parseFloat(quantity)).toFixed(2).toString())
+})
+
+Cypress.Commands.add("clearCart",()=>{
+  
+  cy.get('[title="View my shopping cart"]').click();
+  if(cy.contains('Your shopping cart is empty.'))
+  {
+     cy.get('.logo').click()
+  }else{
+    cy.get(".alert").should("not.include","Your shopping cart is empty.").then(()=>{
+
+      cy.get('[data-title="Delete"]').then((element) => {
+        for (let i = 0; i < element.length; i++) {
+          cy.wrap(element).eq(i).click();
+        }
+    
+        cy.get(".alert").should("not.include", "Your shopping cart is empty.");
+        cy.get('.logo').click()
+      });
+    })
+  }
+  
 })

@@ -1,5 +1,16 @@
 class SearchResultPage {
+
+  AlertToEnterKeyword()
+  {
+    cy.get(".alert").should(
+      "contain",
+      "Please enter a search keyword"
+    );
+  }
+
+
   validateSearchResult(number) {
+
     if (number == 0) {
       cy.contains("0 results have been found.").then(() => {
         cy.get(".alert").should(
@@ -21,6 +32,7 @@ class SearchResultPage {
           });
       }
     }
+
   }
 }
 export default SearchResultPage;
