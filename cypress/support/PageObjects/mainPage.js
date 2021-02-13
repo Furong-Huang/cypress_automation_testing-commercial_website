@@ -6,21 +6,24 @@ class MainPage{
  
      }
 
-    getMoreBtns(number){
-       return cy.contains('More').eq(number-1)
+    clickMoreBtn(number){
+       cy.get('#homefeatured [itemprop="image"]').eq(number-1).trigger('mouseover')
+       cy.contains('More').click()
     }
 
 
     getQuickView(number){
-        cy.get('#homefeatured').find('.quick-view-mobile').eq(number).click({force:true})
+        cy.get('#homefeatured [itemprop="image"]').eq(number-1).trigger('mouseover')
+        cy.get('#homefeatured .quick-view').eq(number-1).click()
     }
 
     ConinueShopping(){
         return cy.get('[title="Continue shopping"]').click()
     }
 
-    getAddToCartBtns(number){
-       return cy.get('[title="Add to cart"]').eq(number-1)
+    clickAddToCartBtn(number){
+        cy.get('#homefeatured [itemprop="image"]').eq(number-1).trigger('mouseover')
+        cy.contains('Add to cart').click()
     }
 
     searchContent(keyword) {

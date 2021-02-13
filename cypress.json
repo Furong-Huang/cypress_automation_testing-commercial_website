@@ -4,5 +4,7 @@
           "email":"374373925@qq.com",
           "password":"2017010555"
     },
-    "defaultCommandTimeout": 10000
+    "defaultCommandTimeout": 10000,
+    "viewportWidth":1500,
+    "viewportHeight":880
 }

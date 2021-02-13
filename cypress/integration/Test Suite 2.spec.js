@@ -17,13 +17,13 @@ describe('Main page of products hover function',()=>{
     
     it('Through Quickview to add product to cart',()=>{
 
-        mainPage.getQuickView(0)
+        mainPage.getQuickView(1)
         iFlamePage.addToCart("3","M","Orange")
         iFlamePage.verifyAddToCartSuccessfully("Faded Short Sleeve T-shirts","3","M","Orange","16.51")
 
         mainPage.ConinueShopping()
 
-        mainPage.getQuickView(1)
+        mainPage.getQuickView(2)
         iFlamePage.addToCart("3","M","Black")
         iFlamePage.verifyAddToCartSuccessfully("Blouse","3","M","Black","27.00")
         
@@ -33,13 +33,13 @@ describe('Main page of products hover function',()=>{
 
     it('Click Add to cart then add product to cart successfully',()=>{
         cy.wait(2000)
-        mainPage.getAddToCartBtns(1).click()
+        mainPage.clickAddToCartBtn(1)
         mainPage.verifyAddToCartSuccessfully("Faded Short Sleeve T-shirts","1","S","Orange","16.51")
         mainPage.ConinueShopping()
     })
 
-    it.only('Verify clicking More button then add to cart in the product detail page',()=>{
-        mainPage.getMoreBtns(1).click()
+    it('Verify clicking More button then add to cart in the product detail page',()=>{
+        mainPage.clickMoreBtn(1)
         productDetailPage.verifyIsProductDetailPage()
         productDetailPage.checkProductPhoto()
         productDetailPage.checkProductSmallPhotos()

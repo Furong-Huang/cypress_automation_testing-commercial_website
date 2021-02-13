@@ -62,8 +62,6 @@ Cypress.Commands.add("addToCart",(quantity,size,color)=>{
             return colorList[i].code;
           }
         }
-            
-
     }
 
     let temp= colorMap(color)
@@ -88,24 +86,18 @@ Cypress.Commands.add("verifyAddToCartSuccessfully",(name,quantity,size,color,pri
     cy.get('#layer_cart_product_price').invoke('text').should('eq','$'+(parseFloat(price)*parseFloat(quantity)).toFixed(2).toString())
 })
 
-Cypress.Commands.add("clearCart",()=>{
-  
-  cy.get('[title="View my shopping cart"]').click();
-  if(cy.contains('Your shopping cart is empty.'))
-  {
-     cy.get('.logo').click()
-  }else{
-    cy.get(".alert").should("not.include","Your shopping cart is empty.").then(()=>{
-
-      cy.get('[data-title="Delete"]').then((element) => {
-        for (let i = 0; i < element.length; i++) {
-          cy.wrap(element).eq(i).click();
+Cypress.Commands.add("clearCart", () => {
+  cy.get(".ajax_cart_quantity").first().then((element) => {
+    if (element.text() !== '0') {
+      cy.get(".shopping_cart b").trigger("mouseover");
+      cy.get(".remove_link").then((items) => {
+        for (let i = 0; i < items.length; i++) {
+          cy.wrap(items).eq(i).click();
         }
-    
-        cy.get(".alert").should("not.include", "Your shopping cart is empty.");
-        cy.get('.logo').click()
+        cy.get(".shopping_cart").should("contain", "(empty)");
       });
-    })
-  }
-  
-})
+    }
+  });
+});
+
+
