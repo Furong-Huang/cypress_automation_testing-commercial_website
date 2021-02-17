@@ -28,8 +28,7 @@ class IFlamePage {
         let temp = this.colorMap(color)
 
         cy.getIframeBody().find('#quantity_wanted').clear().type(quantity)
-        cy.wait(2000)
-        cy.getIframeBody().find('#uniform-group_1').click().find('#group_1').select(size)
+        cy.getIframeBody().find('#uniform-group_1',{timeout:3000}).click().find('#group_1').select(size)
         cy.getIframeBody().find('#'+temp).click()
         cy.getIframeBody().find('#add_to_cart').click()
 

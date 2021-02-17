@@ -49,7 +49,7 @@ describe("Search Function", () => {
     searchResultPage.validateSearchResult(0);
   });
 
-  it("验证不输入内容的点击搜索", () => {
+  it.only("验证不输入内容的点击搜索", () => {
     mainPage.searchContent("");
     searchResultPage.AlertToEnterKeyword();
   });

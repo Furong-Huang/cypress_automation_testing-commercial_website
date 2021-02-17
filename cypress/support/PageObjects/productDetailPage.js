@@ -1,5 +1,9 @@
 class ProductDetailPage {
 
+    goToMainPage(){
+        cy.get('#header_logo').click()
+    }
+
     verifyIsProductDetailPage(){
         return cy.url().should('contain','controller=product')
     }
@@ -8,6 +12,10 @@ class ProductDetailPage {
 
         cy.addToCart(quantity,size,color)
 
+    }
+
+    ConinueShopping(){
+        cy.get('[title="Continue shopping"]').click()
     }
 
     verifyAddToCartSuccessfully(name,quantity,size,color,price){

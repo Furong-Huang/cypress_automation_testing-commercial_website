@@ -27,17 +27,14 @@ class MainPage{
     }
 
     searchContent(keyword) {
-        if(keyword === "")
-        {
-            cy.get('#search_query_top').clear()
-            cy.get('[name="submit_search"]').click()
-             cy.url().should('contain','search_query')
-        }
-        else{
-            cy.get('#search_query_top').clear().type(keyword)
+            cy.get('#search_query_top').clear().then((element)=>{
+                    if(keyword !=="")
+                    {
+                        cy.wrap(element).type(keyword)
+                    }
+            })
             cy.get('[name="submit_search"]').click()
             cy.url().should('contain','search_query')
-        }
     }
 
     searchContentByEnter(keyword) {

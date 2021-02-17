@@ -14,6 +14,23 @@ describe('Main page of products hover function',()=>{
     beforeEach(()=>{
         cy.clearCart()
     })
+
+    it('Click Add to cart then add product to cart successfully',()=>{
+        mainPage.clickAddToCartBtn(1)
+        mainPage.verifyAddToCartSuccessfully("Faded Short Sleeve T-shirts","1","S","Orange","16.51")
+        mainPage.ConinueShopping()
+    })
+
+    it('Verify clicking More button then add to cart in the product detail page',()=>{
+        mainPage.clickMoreBtn(1)
+        productDetailPage.verifyIsProductDetailPage()
+        productDetailPage.checkProductPhoto()
+        productDetailPage.checkProductSmallPhotos()
+        productDetailPage.addToCart("3","M","Orange")
+        productDetailPage.verifyAddToCartSuccessfully("Faded Short Sleeve T-shirts","3","M","Orange","16.51")
+        productDetailPage.ConinueShopping()
+        productDetailPage.goToMainPage()
+    })
     
     it('Through Quickview to add product to cart',()=>{
 
@@ -31,19 +48,5 @@ describe('Main page of products hover function',()=>{
 
     })
 
-    it('Click Add to cart then add product to cart successfully',()=>{
-        cy.wait(2000)
-        mainPage.clickAddToCartBtn(1)
-        mainPage.verifyAddToCartSuccessfully("Faded Short Sleeve T-shirts","1","S","Orange","16.51")
-        mainPage.ConinueShopping()
-    })
 
-    it('Verify clicking More button then add to cart in the product detail page',()=>{
-        mainPage.clickMoreBtn(1)
-        productDetailPage.verifyIsProductDetailPage()
-        productDetailPage.checkProductPhoto()
-        productDetailPage.checkProductSmallPhotos()
-        productDetailPage.addToCart("3","M","Orange")
-        productDetailPage.verifyAddToCartSuccessfully("Faded Short Sleeve T-shirts","3","M","Orange","16.51")
-    })
 })
