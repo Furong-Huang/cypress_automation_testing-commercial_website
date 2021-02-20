@@ -28,10 +28,11 @@ pipeline {
                 sh 'npx cypress run --spec cypress/integration/TestSuite3.spec.js —headed'
             }
         }
-        post{
+    }
+	
+    post{
             always {
                 junit 'results/cypress-report.xml'
             }
         }
-    }
 }
