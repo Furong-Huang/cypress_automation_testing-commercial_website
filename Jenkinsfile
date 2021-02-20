@@ -15,17 +15,17 @@ pipeline {
         }
         stage('Run Test Suite 1') {
             steps {
-                sh 'npx cypress run --spec cypress/integration/TestSuite1.spec.js —headed'
+                sh 'npx cypress run --spec cypress/integration/TestSuite1.spec.js --headed'
             }
         }
         stage('Run Test Suite 2') {
             steps {
-                sh 'npx cypress run --spec cypress/integration/TestSuite2.spec.js —headed'
+                sh 'npx cypress run --spec cypress/integration/TestSuite2.spec.js --headed'
             }
         }
         stage('Run Test Suite 3') {
             steps {
-                sh 'npx cypress run --spec cypress/integration/TestSuite3.spec.js —headed'
+                sh 'npx cypress run --spec cypress/integration/TestSuite3.spec.js --headed'
             }
         }
     }
