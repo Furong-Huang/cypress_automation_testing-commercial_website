@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="Mocha Tests" time="31.4370" tests="8" failures="0">
+  <testsuite name="Root Suite" timestamp="2021-02-20T10:58:04" tests="0" file="cypress\integration\TestSuite1.spec.js" time="0.0000" failures="0">
+  </testsuite>
+  <testsuite name="Search Function" timestamp="2021-02-20T10:58:04" tests="8" time="31.4370" failures="0">
+    <testcase name="Search Function 验证搜索正常内容T-SHIRTS" time="13.5100" classname="验证搜索正常内容T-SHIRTS">
+    </testcase>
+    <testcase name="Search Function 验证搜索含关键字的较长内容" time="3.3960" classname="验证搜索含关键字的较长内容">
+    </testcase>
+    <testcase name="Search Function 验证搜索是否支持回车键" time="2.6490" classname="验证搜索是否支持回车键">
+    </testcase>
+    <testcase name="Search Function 验证搜索空内容" time="1.7120" classname="验证搜索空内容">
+    </testcase>
+    <testcase name="Search Function 验证搜索内容大小写不敏感" time="2.1740" classname="验证搜索内容大小写不敏感">
+    </testcase>
+    <testcase name="Search Function 验证搜索包含特殊字符内容" time="2.2350" classname="验证搜索包含特殊字符内容">
+    </testcase>
+    <testcase name="Search Function 验证搜索不支持多语言-日文，中文" time="4.1470" classname="验证搜索不支持多语言-日文，中文">
+    </testcase>
+    <testcase name="Search Function 验证不输入内容的点击搜索" time="1.6140" classname="验证不输入内容的点击搜索">
+    </testcase>
+  </testsuite>
+</testsuites>
