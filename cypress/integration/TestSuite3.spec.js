@@ -42,7 +42,7 @@ describe('Order History and Details function in My Account Page',()=>{
 
     })
 
-    it.only('Verify downloading invoice fucntion',()=>{
+    it('Verify downloading invoice fucntion',()=>{
         orderHistoryPage.checkDownloadInvoice()
     })
 })
