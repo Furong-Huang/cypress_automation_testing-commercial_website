@@ -10,6 +10,7 @@ pipeline {
     stages {
         stage('Dependencies') {
             steps {
+			    sh 'unset NPM_CONFIG_USER'
                 sh 'npm install'
             }
         }
