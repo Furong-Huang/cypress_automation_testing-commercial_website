@@ -10,38 +10,38 @@ describe("Search Function", () => {
   });
 
 
-  it("验证搜索正常内容T-SHIRTS", () => {
+  it("Verify searching normal content T-SHIRTS", () => {
     mainPage.searchContent("T-SHIRTS");
     searchResultPage.validateSearchResult(1);
   });
 
-  it("验证搜索含关键字的较长内容", () => {
+  it("Verify searching keyword with long content", () => {
     mainPage.searchContent("ddddddddddddddddddddddddd T-SHIRTS dddddsfsfsfddddddddddddddddddddddddddddddddddgdgdhfghfgdhfgdhgdfghdfhgdghdfghdhdghdhfhf");
     searchResultPage.validateSearchResult(0);
   });
 
-  it("验证搜索是否支持回车键", () => {
+  it("Verify searching whether support enter button", () => {
     mainPage.searchContentByEnter("CASUAL DRESSES{enter}");
     searchResultPage.validateSearchResult(4);
   });
 
-  it("验证搜索空内容", () => {
+  it("Verify searching empty content", () => {
     mainPage.searchContentByEnter("     {enter}");
     searchResultPage.validateSearchResult(0);
   });
 
-  it("验证搜索内容大小写不敏感", () => {
+  it("Verify searching content not senstive with uppercase or lowercase", () => {
     mainPage.searchContent("BLOuses");
     searchResultPage.validateSearchResult(1);
 
   });
 
-  it("验证搜索包含特殊字符内容", () => {
+  it("Verify searching content with special characters", () => {
     mainPage.searchContent("T-SHIR@TS");
     searchResultPage.validateSearchResult(1);
   });
 
-  it("验证搜索不支持多语言-日文，中文", () => {
+  it("Verify searching content not support in mutiple language such as Japanese or Chinese", () => {
     mainPage.searchContent("印花连衣裙");
     searchResultPage.validateSearchResult(0);
 
@@ -49,7 +49,7 @@ describe("Search Function", () => {
     searchResultPage.validateSearchResult(0);
   });
 
-  it("验证不输入内容的点击搜索", () => {
+  it("Verify click searching button without any content", () => {
     mainPage.searchContent("");
     searchResultPage.AlertToEnterKeyword();
   });
